@@ -5,11 +5,15 @@ import com.lmax.disruptor.SleepingWaitStrategy;
 import com.lmax.disruptor.dsl.Disruptor;
 import com.lmax.disruptor.dsl.ProducerType;
 import com.lmax.disruptor.util.DaemonThreadFactory;
+import lombok.Getter;
+
 import java.util.List;
 
 public class Stream<T> {
 
     private final Disruptor<Event<T>> disruptor;
+
+    @Getter
     private final RingBuffer<Event<T>> ringBuffer;
 
     public Stream(List<Handler<T>> handlers, int bufferMultiplier) {
